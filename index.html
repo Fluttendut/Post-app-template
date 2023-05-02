@@ -26,6 +26,24 @@
     </main>
 
     <!-- dialog - create new post -->
+
+    <dialog id="dialog-create-new-post">
+        <h2>Create new post</h2>
+<!--        If there is a method with "dialog" iside the dialog, then it automatically closes the dialog-->
+        <form id="form-create-post" method="dialog">
+            <label for="title">Title</label>
+            <input id="title" type="text" name="title" placeholder="Type a new title">
+
+            <label for="body">body</label>
+            <input id="body" type="text" name="body" placeholder="Type new body content">
+
+            <label for="image">image</label>
+            <input id="image" type="url" name="image" placeholder="Paste a new image url">
+            <button>Create</button>
+<!--            If you do not put a type on a button, then it is automatically a submit type-->
+            <button id="btn-cancel" type="button">LEAVE!!</button>
+        </form>
+    </dialog>
     <!-- to do  -->
 
     <!-- dialog - update post -->
