@@ -210,7 +210,7 @@ async function deletePostClicked(event) {
             else {
             console.log(response.statusText);
             console.log(response.status);
-
+//
         }
 
     }
