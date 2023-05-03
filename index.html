@@ -41,17 +41,44 @@
             <input id="image" type="url" name="image" placeholder="Paste a new image url">
             <button>Create</button>
 <!--            If you do not put a type on a button, then it is automatically a submit type-->
-            <button id="btn-cancel" type="button">LEAVE!!</button>
+            <button id="btn-cancel" type="button">Cancel</button>
         </form>
     </dialog>
     <!-- to do  -->
 
     <!-- dialog - update post -->
+    <dialog id="dialog-update-post">
+        <h2>Update post</h2>
+        <form id="form-update-post" method="dialog">
+            <label for="title">Title</label>
+            <input id="title-update" type="text" name="title" placeholder="Type a new title">
+
+            <label for="body">body</label>
+            <input id="body-update" type="text" name="body" placeholder="Type new body content">
+
+            <label for="image">image</label>
+            <input id="image-update" type="url" name="image" placeholder="Paste a new image url">
+            <button>Create</button>
+            <!--            If you do not put a type on a button, then it is automatically a submit type-->
+            <button id="update-btn-cancel" type="button">Cancel</button>
+        </form>
+    </dialog>
     <!-- to do  -->
 
 
     <!-- dialog - delete post -->
     <!-- to do  -->
+
+    <dialog id="dialog-delete-post">
+        <h2>Do you want to delete this post?</h2>
+        <p id="dialog-delete-post-title">Post title placeholder</p>
+<!--        I can use data-id="bla bla bal" to store data also-->
+        <form id="form-delete-post" method="dialog">
+            <button>Yes</button>
+            <!--        type="button" is used to make sure the button is not a submit-->
+            <button id="btn-no" type="button">No</button>
+        </form>
+    </dialog>
 
     <script src="app.js"></script>
 </body>
