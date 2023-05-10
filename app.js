@@ -23,6 +23,9 @@ async function initApp() {
     document.querySelector("#form-create-post").addEventListener("submit", createPostClicked);
     document.querySelector("#form-delete-post").addEventListener("submit", deletePostClicked);
     document.querySelector("#form-update-post").addEventListener("submit", updatePostClicked);
+    document.querySelector("#select-sort-by").addEventListener("change", sortByChanged)
+    document.querySelector("#input-search").addEventListener("keyup", inputSearchChanged)
+    document.querySelector("#input-search").addEventListener("search", inputSearchChanged)
     //submit can refer to a submit event like below in createPostClicked
 }
 
@@ -40,6 +43,37 @@ async function initApp() {
 
     // const newPost ={title: title, body: body, image: image}
     // console.log(newPost)
+}
+
+function inputSearchChanged(event){
+    const value = event.target.value;
+    const postsToShow = searchPosts(value)
+    showPosts(postsToShow);
+}
+
+function searchPosts(searchValue){
+    searchValue = searchValue.toLowerCase();
+
+    const results = posts.filter(checkTitle);
+
+    function checkTitle(post){
+        const title = post.title.toLowerCase();
+        return title.includes(searchValue)
+    }
+    return results;
+}
+
+function sortByChanged(event){
+    const selectedValue = event.target.value;
+    console.log(selectedValue);
+    //== is testing value while === is testing value and type
+    if(selectedValue === "title") {
+        posts.sort(compareTitle);
+    //If more than one else if is needed, then just add it
+    }else if (selectedValue === "body") {
+        posts.sort(compareBody);
+    }
+    showPosts(posts);
 }
 
 function updatePostClicked(event) {
@@ -91,9 +125,19 @@ async function deletePostClicked(event) {
 
     async function updatePostsGrid() {
         posts = await getPosts(); // get posts from rest endpoint and save in global variable
+        // posts.sort(compareTitle);
+        // posts.sort(compareBody);
         showPosts(posts); // show all posts (append to the DOM) with posts as argument
     }
 
+//compares the body of the posts alphabetically
+    function compareBody(post1, post2){
+    return post1.body.localeCompare(post2.body);
+    }
+//compares the title of the posts alphabetically
+    function compareTitle(post1, post2){
+    return post1.title.localeCompare(post2.title);
+    }
 // Get all posts - HTTP Method: GET
     async function getPosts() {
         const response = await fetch(`${endpoint}/posts.json`); // fetch request, (GET)
